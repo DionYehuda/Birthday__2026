@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Happy Birthday My Love</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500&family=Great+Vibes&display=swap" rel="stylesheet">
+
+<style>
+
+body{
+margin:0;
+height:100vh;
+font-family:'Poppins',sans-serif;
+background:linear-gradient(135deg,#ff9a9e,#fecfef);
+display:flex;
+align-items:center;
+justify-content:center;
+overflow:hidden;
+color:white;
+}
+
+/* PAGE */
+
+.page{
+display:none;
+text-align:center;
+max-width:650px;
+padding:40px;
+}
+
+.active{
+display:block;
+}
+
+/* TITLE */
+
+h1{
+font-family:'Great Vibes',cursive;
+font-size:70px;
+margin-bottom:10px;
+}
+
+/* BUTTON */
+
+button{
+margin-top:25px;
+padding:14px 28px;
+border:none;
+border-radius:30px;
+background:white;
+color:#ff4b7d;
+font-size:18px;
+cursor:pointer;
+box-shadow:0 5px 20px rgba(0,0,0,0.2);
+}
+
+/* IMAGE */
+
+img{
+width:260px;
+border-radius:20px;
+box-shadow:0 10px 30px rgba(0,0,0,0.3);
+margin-top:20px;
+}
+
+/* CAKE AREA */
+
+.cake-wrapper{
+margin-top:40px;
+display:flex;
+flex-direction:column;
+align-items:center;
+}
+
+/* CANDLE */
+
+.candle{
+width:12px;
+height:45px;
+background:white;
+position:relative;
+cursor:pointer;
+}
+
+/* FLAME */
+
+.flame{
+width:14px;
+height:18px;
+background:orange;
+border-radius:50%;
+position:absolute;
+top:-18px;
+left:-1px;
+animation:flicker .25s infinite;
+}
+
+@keyframes flicker{
+0%{transform:scale(1)}
+50%{transform:scale(1.3)}
+100%{transform:scale(1)}
+}
+
+/* CAKE */
+
+.cake{
+width:220px;
+height:130px;
+background:#ffb6c1;
+border-radius:15px;
+margin-top:5px;
+box-shadow:0 8px 20px rgba(0,0,0,0.2);
+}
+
+/* HIDDEN */
+
+.hidden{
+display:none;
+}
+
+/* FLOATING HEART */
+
+.heart{
+position:fixed;
+font-size:20px;
+animation:float 6s linear infinite;
+opacity:.8;
+}
+
+@keyframes float{
+from{transform:translateY(100vh)}
+to{transform:translateY(-10vh)}
+}
+
+</style>
+</head>
+
+<body>
+
+<audio autoplay loop>
+<source src="https://cdn.pixabay.com/audio/2022/03/15/audio_6c4c0a2c06.mp3">
+</audio>
+
+<!-- PAGE 1 -->
+
+<div class="page active" id="page1">
+
+<h1>Happy Birthday</h1>
+<h2>My Love ❤️</h2>
+
+<p>
+Today is a very special day because the most amazing
+person in my life was born.
+</p>
+
+<button onclick="nextPage()">Open My Heart 💌</button>
+
+</div>
+
+<!-- PAGE 2 -->
+
+<div class="page" id="page2">
+
+<h1>You</h1>
+
+<img src="photo.jpg">
+
+<p style="margin-top:20px">
+Every moment with you is my favorite memory.
+</p>
+
+<button onclick="cakePage()">Make a Wish 🎂</button>
+
+</div>
+
+<!-- PAGE 3 -->
+
+<div class="page" id="page3">
+
+<h1>Make a Wish</h1>
+
+<p>Tap the candle to blow it out ❤️</p>
+
+<div class="cake-wrapper">
+
+<div class="candle" onclick="blow()">
+
+<div class="flame" id="flame"></div>
+
+</div>
+
+<div class="cake"></div>
+
+</div>
+
+</div>
+
+<!-- PAGE 4 -->
+
+<div class="page" id="page4">
+
+<h1>For You 💖</h1>
+
+<p style="font-size:20px; line-height:1.7">
+
+Happy Birthday, my love.
+
+Thank you for bringing so much happiness into my life.
+You make my days brighter, my heart warmer,
+and my world so much more beautiful.
+
+I hope this year brings you endless happiness,
+success in everything you dream of,
+and countless moments of joy.
+
+No matter what happens,
+I will always be here for you.
+
+I love you more than words can ever express.
+
+Happy Birthday ❤️
+
+</p>
+
+</div>
+
+<script>
+
+function nextPage(){
+document.getElementById("page1").classList.remove("active")
+document.getElementById("page2").classList.add("active")
+}
+
+function cakePage(){
+document.getElementById("page2").classList.remove("active")
+document.getElementById("page3").classList.add("active")
+}
+
+function blow(){
+
+document.getElementById("flame").classList.add("hidden")
+
+setTimeout(()=>{
+document.getElementById("page3").classList.remove("active")
+document.getElementById("page4").classList.add("active")
+},1200)
+
+}
+
+function hearts(){
+
+let heart=document.createElement("div")
+
+heart.className="heart"
+heart.innerHTML="❤️"
+
+heart.style.left=Math.random()*100+"vw"
+heart.style.fontSize=(20+Math.random()*30)+"px"
+heart.style.animationDuration=(4+Math.random()*3)+"s"
+
+document.body.appendChild(heart)
+
+setTimeout(()=>heart.remove(),6000)
+
+}
+
+setInterval(hearts,300)
+
+</script>
+
+</body>
+</html>
